@@ -13,26 +13,26 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 ### Exciting New Features 🎉
 
 - feat(form-item): [form-item] add no-style support by @guomengjia618-dot in https://github.com/opentiny/tiny-vue/pull/4300
-- feat(fluent-editor): the issue of scrolling offset occurs when editing a table by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4311
+- feat(fluent-editor): fix scrolling offset when editing a table by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4311
 
 ### Bug Fixes 🐛
 
 - fix: compatible with the click behavior of AUI-based foldable panels by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4271
 - fix: compatible with the click behavior into saas-design by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4273
 - fix(theme): update theme package version to 3.31.1 and improve CSS class selectors in reset.less by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4274
-- fix: 恢复指南菜单以及构建open模式，不带业务组件 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4283
+- fix: restore the guide menu and build open mode without business components by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4283
 - fix: svg function supports a bottom padding style across multiple devices. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4289
 - fix(slider-button-group): lost ref in pc.vue by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4292
-- fix(input): 为密码可见性切换按钮补上 mousedown.prevent，修复连续点击时误选中页面文本 by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4291
-- fix(demos): 多选个数限制示例不再与自定义图标示例共用 v-model(#4285) by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4286
-- fix(color-select-panel): 修复直接输入颜色值时滑块和显示器不同步的问题(#4280)  by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4267
-- fix(clickoutside): 修复拖选文本时误触发外部点击关闭的问题  by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4288
+- fix(input): add mousedown.prevent on the password visibility toggle to avoid selecting page text on consecutive clicks by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4291
+- fix(demos): the multi-select count limit demo no longer shares v-model with the custom icon demo (#4285) by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4286
+- fix(color-select-panel): keep the slider and preview in sync when typing a color value (#4280) by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4267
+- fix(clickoutside): avoid treating text drag-selection as an outside click that closes the popup by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4288
 - fix(grid): When switching a multi-device table to mobile mode, it displays as blank. by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4284
-- fix(tabs): 修复 showMoreTabs 模式下 overflow 计算滞后导致下拉菜单未及时更新(#4279)  by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4272
+- fix(tabs): fix delayed overflow calculation in showMoreTabs mode that prevented the dropdown from updating in time (#4279) by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4272
 - fix(common): inject design into child components and add a fallback variable. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4293
 - fix: saas-design write the wrong icon name by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4295
 - fix: resolve i18n switching failure in the simplified column settings panel, and add i18n toggle for local debugging by @zzcr in https://github.com/opentiny/tiny-vue/pull/4298
-- fix(grid): 修复固定列列显隐边界场景列错位及序列化报错 by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4302
+- fix(grid): fix column misalignment and serialization errors when toggling visibility of frozen columns at the boundary by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4302
 - fix(fluent-editor): solve the problem of some title prompts disappearing from the toolbar by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4304
 - fix: restore style by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4309
 - fix: events cannot be broadcast into when a component is in a slot. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4306

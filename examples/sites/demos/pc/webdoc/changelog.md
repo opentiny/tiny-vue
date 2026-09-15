@@ -12,51 +12,51 @@ Tiny Vue 团队在正常情况下使用 每月 发布策略。
 
 ### Exciting New Features 🎉
 
-- feat(form-item): [form-item] add no-style support by @guomengjia618-dot in https://github.com/opentiny/tiny-vue/pull/4300
-- feat(fluent-editor): the issue of scrolling offset occurs when editing a table by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4311
+- feat(form-item): [form-item] 增加 no-style 支持 by @guomengjia618-dot in https://github.com/opentiny/tiny-vue/pull/4300
+- feat(fluent-editor): 修复编辑表格时出现滚动偏移的问题 by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4311
 
 ### Bug Fixes 🐛
 
-- fix: compatible with the click behavior of AUI-based foldable panels by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4271
-- fix: compatible with the click behavior into saas-design by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4273
-- fix(theme): update theme package version to 3.31.1 and improve CSS class selectors in reset.less by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4274
-- fix: 恢复指南菜单以及构建open模式，不带业务组件 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4283
-- fix: svg function supports a bottom padding style across multiple devices. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4289
-- fix(slider-button-group): lost ref in pc.vue by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4292
+- fix: 兼容基于 AUI 的可折叠面板点击行为 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4271
+- fix: 将可折叠面板点击行为兼容进 saas-design by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4273
+- fix(theme): 将 theme 包版本更新为 3.31.1，并改进 reset.less 中的 CSS 类选择器 by @gimmyhehe in https://github.com/opentiny/tiny-vue/pull/4274
+- fix: 恢复指南菜单以及构建 open 模式，不带业务组件 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4283
+- fix: svg 函数支持多端底部内边距样式 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4289
+- fix(slider-button-group): 修复 pc.vue 中丢失的 ref by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4292
 - fix(input): 为密码可见性切换按钮补上 mousedown.prevent，修复连续点击时误选中页面文本 by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4291
 - fix(demos): 多选个数限制示例不再与自定义图标示例共用 v-model(#4285) by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4286
-- fix(color-select-panel): 修复直接输入颜色值时滑块和显示器不同步的问题(#4280)  by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4267
-- fix(clickoutside): 修复拖选文本时误触发外部点击关闭的问题  by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4288
-- fix(grid): When switching a multi-device table to mobile mode, it displays as blank. by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4284
-- fix(tabs): 修复 showMoreTabs 模式下 overflow 计算滞后导致下拉菜单未及时更新(#4279)  by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4272
-- fix(common): inject design into child components and add a fallback variable. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4293
-- fix: saas-design write the wrong icon name by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4295
-- fix: resolve i18n switching failure in the simplified column settings panel, and add i18n toggle for local debugging by @zzcr in https://github.com/opentiny/tiny-vue/pull/4298
+- fix(color-select-panel): 修复直接输入颜色值时滑块和显示器不同步的问题(#4280) by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4267
+- fix(clickoutside): 修复拖选文本时误触发外部点击关闭的问题 by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4288
+- fix(grid): 多端表格切换到移动端时显示为空白 by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4284
+- fix(tabs): 修复 showMoreTabs 模式下 overflow 计算滞后导致下拉菜单未及时更新(#4279) by @chujieHong in https://github.com/opentiny/tiny-vue/pull/4272
+- fix(common): 向子组件注入 design，并增加回退变量 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4293
+- fix: saas-design 引用了错误的图标包名称 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4295
+- fix: 修复简化版列设置面板国际化切换失败，并补充本地调试的语言切换 by @zzcr in https://github.com/opentiny/tiny-vue/pull/4298
 - fix(grid): 修复固定列列显隐边界场景列错位及序列化报错 by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4302
-- fix(fluent-editor): solve the problem of some title prompts disappearing from the toolbar by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4304
-- fix: restore style by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4309
-- fix: events cannot be broadcast into when a component is in a slot. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4306
-- fix: add the resize and drag functionality for all four edges of the modal on mf template by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4307
-- fix: optimize the type declaration of Message. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4301
-- fix: the design saas, an incorrect icon package is referenced by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4308
-- fix(icon): remove unnecessary elements from the icon by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4303
-- fix: avoid ts warning by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4313
-- fix(tag-group): delayed calculation of the tag's height by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4312
-- fix(upload-list): When maxNameLength is not set, excessively long file names are displayed using CSS ellipsis. by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4315
-- fix(pager): solve the problem that the current page does not change after the total number of pages changes by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4316
-- fix(doc): optimize documents with custom grid sorting by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4314
-- fix(alert): remove the height restriction for the large mode of the alert component. by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4324
-- fix(vue/grid): [grid] guard requestIdleCallback for Safari by @lhuans in https://github.com/opentiny/tiny-vue/pull/4325
-- fix(vue/grid): [grid] split rowspan at expand row (#4200) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4319
-- fix(docs): close body poppers on doc layout scroll (opentiny#4290) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4317
-- fix(utils): parse iso datetime without timezone in toDate (#4176) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4321
-- fix(vue-renderless/date-range): clamp end time without rewriting start time (#4185) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4322
-- fix(sites): [color-select-panel, select, dropdown] skip popper close in e2e by @zzcr in https://github.com/opentiny/tiny-vue/pull/4327
-- fix(docs): avoid static saas theme less import in pages build by @zzcr in https://github.com/opentiny/tiny-vue/pull/4329
+- fix(fluent-editor): 修复工具栏部分标题提示消失的问题 by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4304
+- fix: 恢复样式 by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4309
+- fix: 组件位于插槽中时事件无法向下广播 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4306
+- fix: 为 mf 模板下的 modal 四边补充缩放与拖拽能力 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4307
+- fix: 优化 Message 的类型声明 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4301
+- fix: design saas 引用了错误的图标包 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4308
+- fix(icon): 移除图标中不必要的元素 by @James-9696 in https://github.com/opentiny/tiny-vue/pull/4303
+- fix: 消除 ts 告警 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4313
+- fix(tag-group): 延迟计算标签高度 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4312
+- fix(upload-list): 未设置 maxNameLength 时，过长文件名使用 CSS 省略号显示 by @discreted66 in https://github.com/opentiny/tiny-vue/pull/4315
+- fix(pager): 修复总页数变化后当前页未同步更新的问题 by @wuyiping0628 in https://github.com/opentiny/tiny-vue/pull/4316
+- fix(doc): 优化表格自定义排序相关文档 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4314
+- fix(alert): 移除 Alert 大尺寸模式的高度限制 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4324
+- fix(vue/grid): [grid] 为 Safari 防护 requestIdleCallback by @lhuans in https://github.com/opentiny/tiny-vue/pull/4325
+- fix(vue/grid): [grid] 在展开行处拆分 rowspan (#4200) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4319
+- fix(docs): 文档布局滚动时关闭 body 上的 popper (opentiny#4290) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4317
+- fix(utils): toDate 解析不带时区的 ISO 日期时间 (#4176) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4321
+- fix(vue-renderless/date-range): 钳制结束时间时不改写开始时间 (#4185) by @Huauauaa in https://github.com/opentiny/tiny-vue/pull/4322
+- fix(sites): [color-select-panel, select, dropdown] E2E 中跳过滚动关闭 popper by @zzcr in https://github.com/opentiny/tiny-vue/pull/4327
+- fix(docs): pages 构建避免静态解析 saas theme 的 less 导入 by @zzcr in https://github.com/opentiny/tiny-vue/pull/4329
 
 ### Other Changes
 
-- docs: add 3.31.0's changelog by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4275
+- docs: 补充 3.31.0 更新日志 by @shenjunjian in https://github.com/opentiny/tiny-vue/pull/4275
 
 ## New Contributors
 
