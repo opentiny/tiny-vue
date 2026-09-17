@@ -387,6 +387,7 @@ export const tools = (context, mode) => {
     mode,
     isPCMode: mode === 'pc',
     isMobileMode: mode === 'mobile',
+    isMobileFirstMode: mode === 'mobile-first',
     service: root?.$getService ? root?.$getService(vm) : root?.$service,
     getService: () => root?.$getService(vm),
     setParentAttribute,
