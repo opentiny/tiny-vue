@@ -253,6 +253,17 @@ describe('PC Mode', () => {
     expect(blur).toHaveBeenCalled()
   })
 
+  test('input 设置组件输入内容变化时触发的回调函数', async () => {
+    const num = ref(1)
+    const input = vi.fn()
+    const wrapper = mount(() => <Numeric v-model={num.value} onInput={input}></Numeric>)
+
+    await wrapper.find('input').setValue(2)
+
+    expect(input).toHaveBeenCalledTimes(1)
+    expect(input.mock.calls[0][0]).toMatchObject({ type: 'input' })
+  })
+
   test('change 设置组件的值变化时触发的回调函数', async () => {
     const num = ref(1)
     const change = vi.fn()

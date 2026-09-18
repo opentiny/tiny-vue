@@ -356,6 +356,7 @@ export const handleInput =
     event.target.value = isNull(value) ? '' : value
     state.lastInput = value
     state.userInput = value
+    emit('input', event)
   }
 
 export const handleInputChange =
