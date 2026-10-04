@@ -102,6 +102,26 @@ describe('Split touch dragging', () => {
     expect(emitted(wrapper, 'movestart')).toBeUndefined()
   })
 
+  test('ignores movement from another finger without preventing its default gesture', () => {
+    const wrapper = mount()
+    dispatchTouch(trigger(wrapper), 'touchstart', [touch(1, 200)])
+
+    const otherMove = dispatchTouch(document, 'touchmove', [touch(1, 200), touch(2, 340)], [touch(2, 340)])
+    expect(otherMove.defaultPrevented).toBe(false)
+    expect(emitted(wrapper, 'moving')).toBeUndefined()
+    expect(emitted(wrapper, 'update:modelValue')).toBeUndefined()
+
+    const activeMove = dispatchTouch(document, 'touchmove', [touch(1, 240), touch(2, 340)], [touch(1, 240)])
+    expect(activeMove.defaultPrevented).toBe(true)
+    expect(emitted(wrapper, 'moving')?.[0][0]).toBe(activeMove)
+    expect(emitted(wrapper, 'update:modelValue')).toEqual([[0.6]])
+
+    const nextOtherMove = dispatchTouch(document, 'touchmove', [touch(1, 240), touch(2, 380)], [touch(2, 380)])
+    expect(nextOtherMove.defaultPrevented).toBe(false)
+    expect(emitted(wrapper, 'moving')).toHaveLength(1)
+    expect(emitted(wrapper, 'update:modelValue')).toHaveLength(1)
+  })
+
   test('tracks the original finger and ignores another finger ending', () => {
     const wrapper = mount()
     dispatchTouch(trigger(wrapper), 'touchstart', [touch(1, 200)])

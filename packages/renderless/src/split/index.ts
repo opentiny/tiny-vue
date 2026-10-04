@@ -53,7 +53,7 @@ export const handleMove =
 
     const point =
       'touches' in event
-        ? Array.from(event.touches).find((touch) => touch.identifier === state.touchId)
+        ? Array.from(event.changedTouches).find((touch) => touch.identifier === state.touchId)
         : state.touchId === null
           ? event
           : null
