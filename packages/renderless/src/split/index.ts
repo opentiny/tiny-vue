@@ -42,14 +42,26 @@ export const getAnotherOffset =
     return isPercent
       ? 100 - value
       : state.valueIsPx
-      ? `${vm.$refs.outerWrapper[state.offsetSize] - parseFloat(value)}px`
-      : 1 - value
+        ? `${vm.$refs.outerWrapper[state.offsetSize] - parseFloat(value)}px`
+        : 1 - value
   }
 
 export const handleMove =
   ({ api, emit, props, vm, state }) =>
-  (event) => {
-    const pageOffset = state.isHorizontal ? event.pageX : event.pageY
+  (event: (MouseEvent | TouchEvent) & { atMin?: boolean; atMax?: boolean }) => {
+    if (!state.isMoving) return
+
+    const point =
+      'touches' in event
+        ? Array.from(event.touches).find((touch) => touch.identifier === state.touchId)
+        : state.touchId === null
+          ? event
+          : null
+
+    if (!point) return
+    if ('touches' in event && event.cancelable) event.preventDefault()
+
+    const pageOffset = state.isHorizontal ? point.pageX : point.pageY
     const offset = pageOffset - state.initOffset
     const outerWidth = vm.$refs.outerWrapper[state.offsetSize]
 
@@ -90,22 +102,48 @@ export const handleMove =
     emit('moving', event)
   }
 
-export const handleUp =
-  ({ api, emit, off, state }) =>
+export const cleanupDrag =
+  ({ api, off, state }) =>
   () => {
     state.isMoving = false
+    state.touchId = null
 
     off(document, 'mousemove', api.handleMove)
     off(document, 'mouseup', api.handleUp)
+    off(document, 'touchmove', api.handleMove)
+    off(document, 'touchend', api.handleUp)
+    off(document, 'touchcancel', api.handleUp)
+  }
+
+export const handleUp =
+  ({ api, emit, state }) =>
+  (event?: MouseEvent | TouchEvent) => {
+    if (!state.isMoving) return
+    if (
+      event &&
+      'changedTouches' in event &&
+      !Array.from(event.changedTouches).some((touch) => touch.identifier === state.touchId)
+    ) {
+      return
+    }
+
+    api.cleanupDrag()
 
     emit('moveend')
   }
 
 export const handleMousedown =
   ({ api, emit, on, props, state, vm }) =>
-  (event) => {
-    if (!props.disabled) {
-      state.initOffset = state.isHorizontal ? event.pageX : event.pageY
+  (event: MouseEvent | TouchEvent) => {
+    const isTouch = 'touches' in event
+    if (isTouch && event.touches.length !== 1) return
+    if (!isTouch && event.button !== 0) return
+
+    if (!props.disabled && !state.isMoving) {
+      const point = isTouch ? event.touches[0] : event
+      state.touchId = isTouch ? event.touches[0].identifier : null
+      if (isTouch && event.cancelable) event.preventDefault()
+      state.initOffset = state.isHorizontal ? point.pageX : point.pageY
       if (state.offset === 0) {
         state.oldOffset = 0
       } else if (state.offset === 100) {
@@ -122,8 +160,14 @@ export const handleMousedown =
       }
       state.isMoving = true
 
-      on(document, 'mousemove', api.handleMove)
-      on(document, 'mouseup', api.handleUp)
+      if (isTouch) {
+        on(document, 'touchmove', api.handleMove, { passive: false })
+        on(document, 'touchend', api.handleUp)
+        on(document, 'touchcancel', api.handleUp)
+      } else {
+        on(document, 'mousemove', api.handleMove)
+        on(document, 'mouseup', api.handleUp)
+      }
 
       emit('movestart')
     }
@@ -171,8 +215,8 @@ export const computeOffset =
   ({ api, nextTick, props, vm, state }) =>
   () => {
     setTimeout(() => {
-      // 防止当split组件销毁时，state为undefined导致的报错
-      if (state && !isServer) {
+      // 防止组件销毁后，延迟回调访问已移除的面板
+      if (vm.$refs.outerWrapper && !isServer) {
         state.totalPane = vm.$refs.outerWrapper[state.offsetSize]
         state.leftTopPane = state.totalPane * (state.offset / 100)
       }

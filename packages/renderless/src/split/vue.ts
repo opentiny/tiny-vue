@@ -18,6 +18,7 @@ import {
   getAnotherOffset,
   handleMove,
   handleUp,
+  cleanupDrag,
   handleMousedown,
   buttonMousedown,
   buttonLeftTopClick,
@@ -30,7 +31,7 @@ export const api = ['state', 'handleMousedown', 'buttonMousedown', 'buttonLeftTo
 
 export const renderless = (props, hooks, { vm, nextTick, emit, constants, designConfig }) => {
   const api = {}
-  const { computed, reactive } = hooks
+  const { computed, reactive, onBeforeUnmount } = hooks
   const getUseOffset = useOffset({ nextTick, props, vm, constants, hooks })
 
   const state = reactive({
@@ -39,6 +40,7 @@ export const renderless = (props, hooks, { vm, nextTick, emit, constants, design
     oldOffset: 0,
     initOffset: 0,
     isMoving: false,
+    touchId: null,
     prefix: constants.PREFIX,
     computedleftTopMin: computed(() => api.getComputedThresholdValue('leftTopMin')),
     computedrightBottomMin: computed(() => api.getComputedThresholdValue('rightBottomMin')),
@@ -60,7 +62,8 @@ export const renderless = (props, hooks, { vm, nextTick, emit, constants, design
     getleftTopMin: getleftTopMin(state),
     getrightBottomMin: getrightBottomMin(state),
     ...getUseOffset.api,
-    handleUp: handleUp({ api, emit, off, state }),
+    cleanupDrag: cleanupDrag({ api, off, state }),
+    handleUp: handleUp({ api, emit, state }),
     getAnotherOffset: getAnotherOffset({ vm, state }),
     handleMove: handleMove({ api, emit, props, vm, state }),
     handleMousedown: handleMousedown({ api, emit, on, props, state, vm }),
@@ -69,6 +72,8 @@ export const renderless = (props, hooks, { vm, nextTick, emit, constants, design
     buttonRightBottomClick: buttonRightBottomClick({ emit, props, state }),
     getComputedThresholdValue: getComputedThresholdValue({ api, props, vm, state })
   })
+
+  onBeforeUnmount(api.cleanupDrag)
 
   return api
 }

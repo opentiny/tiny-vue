@@ -11,8 +11,8 @@ export default {
         'en-US': 'Basic Usage'
       },
       desc: {
-        'zh-CN': '详细用法参考如下示例',
-        'en-US': 'For details, see the following example.'
+        'zh-CN': '支持鼠标拖拽，也支持在平板和手机上通过单指触摸拖拽调整面板大小。',
+        'en-US': 'Resize panels with a mouse or a single-finger touch drag on tablets and phones.'
       },
       codeFiles: ['basic-usage.vue']
     },

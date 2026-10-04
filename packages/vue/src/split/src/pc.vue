@@ -33,6 +33,7 @@
         ]"
         :style="{ left: threeAreas ? `${state.leftTopPane}px` : `${state.offset}%` }"
         @mousedown="handleMousedown"
+        @touchstart="handleMousedown"
       >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-vertical`]">
@@ -57,6 +58,7 @@
           ]"
           v-if="triggerSimple"
           @mousedown="buttonMousedown"
+          @touchstart="buttonMousedown"
           @click="buttonLeftTopClick"
         >
           <icon-left-ward class="tiny-svg-size"></icon-left-ward>
@@ -70,6 +72,7 @@
           ]"
           v-if="triggerSimple"
           @mousedown="buttonMousedown"
+          @touchstart="buttonMousedown"
           @click="buttonRightBottomClick"
         >
           <icon-right-ward class="tiny-svg-size"></icon-right-ward>
@@ -108,6 +111,7 @@
         ]"
         :style="{ top: threeAreas ? `${state.leftTopPane}px` : `${state.offset}%` }"
         @mousedown="handleMousedown"
+        @touchstart="handleMousedown"
       >
         <slot name="trigger">
           <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-horizontal`]">
@@ -132,6 +136,7 @@
           ]"
           v-if="triggerSimple"
           @mousedown="buttonMousedown"
+          @touchstart="buttonMousedown"
           @click="buttonLeftTopClick"
         >
           <icon-left-ward class="tiny-svg-size"></icon-left-ward>
@@ -145,6 +150,7 @@
           ]"
           v-if="triggerSimple"
           @mousedown="buttonMousedown"
+          @touchstart="buttonMousedown"
           @click="buttonRightBottomClick"
         >
           <icon-right-ward class="tiny-svg-size"></icon-right-ward>
