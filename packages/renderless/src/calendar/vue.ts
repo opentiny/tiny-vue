@@ -62,6 +62,11 @@ const initState = ({ reactive, props, computed, api }) => {
 
 const initWatch = ({ watch, props, state, emit }) => {
   watch(
+    () => props.mode,
+    (value) => (state.displayMode = value)
+  )
+
+  watch(
     () => props.year,
     (value, oldValue) => {
       if (value !== oldValue) {
