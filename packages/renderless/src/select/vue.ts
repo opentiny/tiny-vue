@@ -93,6 +93,7 @@ import {
   computedShowCopy,
   computedOptionsAllDisabled,
   computedDisabledTooltipContent,
+  getDisplayOnlyContent,
   computedSelectDisabled,
   computedIsExpandAll,
   watchInitValue,
@@ -267,9 +268,11 @@ const initState = ({
           // 如果已经displayOnly 且传入了options,从这里找label, 否则从state.selected （displayOnly时不渲染options)
           if (state.isDisplayOnly && props.options && props.options.length > 0) {
             const find = props.options.find((opt) => opt[props.valueField] === state.selected.value)
-            return find ? find[props.textField] : ''
+            return getDisplayOnlyContent(find?.[props.textField])
           } else {
-            return state.selected.state?.currentLabel || state.selected.currentLabel || state.selected.label || ''
+            return getDisplayOnlyContent(
+              state.selected.state?.currentLabel ?? state.selected.currentLabel ?? state.selected.label
+            )
           }
         } else {
           return ''

@@ -1974,6 +1974,8 @@ export const computedDisabledTooltipContent =
     return state.displayOnlyContent
   }
 
+export const getDisplayOnlyContent = (value: unknown): string => (value == null ? '' : String(value))
+
 export const computedSelectDisabled =
   ({ state }) =>
   () =>
