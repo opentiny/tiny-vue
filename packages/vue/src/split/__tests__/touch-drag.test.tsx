@@ -2,6 +2,8 @@ import { mountPcMode } from '@opentiny-internal/vue-test-utils'
 import { afterEach, describe, expect, test, vi } from 'vitest'
 import Split from '@opentiny/vue-split'
 import { hooks } from '@opentiny/vue-common'
+import auroraStyles from '../../../../theme/src/split/index.less?inline'
+import saasStyles from '../../../../theme-saas/src/split/index.less?inline'
 
 const { nextTick } = hooks
 
@@ -22,6 +24,7 @@ const dispatchTouch = (
 describe('Split touch dragging', () => {
   const wrappers: ReturnType<typeof mountPcMode>[] = []
   const containers: HTMLElement[] = []
+  const styles: HTMLStyleElement[] = []
   const views = new Map<ReturnType<typeof mountPcMode>, ReturnType<typeof mountPcMode>>()
   const emitted = (wrapper: ReturnType<typeof mountPcMode>, name: string) => views.get(wrapper)?.emitted(name)
   const mount = (props = {}) => {
@@ -45,6 +48,7 @@ describe('Split touch dragging', () => {
   afterEach(async () => {
     wrappers.splice(0).forEach((wrapper) => wrapper.unmount())
     containers.splice(0).forEach((container) => container.remove())
+    styles.splice(0).forEach((style) => style.remove())
     await nextTick()
     views.clear()
     vi.restoreAllMocks()
@@ -159,6 +163,39 @@ describe('Split touch dragging', () => {
     for (const name of ['touchmove', 'touchend', 'touchcancel']) {
       expect(remove.mock.calls.some(([type]) => type === name)).toBe(true)
     }
+  })
+
+  test.each([
+    ['Aurora', auroraStyles],
+    ['SAAS', saasStyles]
+  ])('%s reserves drag gestures without restricting collapse buttons or disabled panels', (_theme, css) => {
+    const style = document.createElement('style')
+    style.textContent = css
+    document.head.appendChild(style)
+    styles.push(style)
+
+    // JSDOM does not expose touch-action in computed styles; match the compiled CSS rules against the real DOM.
+    const restrictsTouch = (element: Element) =>
+      Array.from(style.sheet?.cssRules || []).some(
+        (rule) =>
+          rule instanceof CSSStyleRule &&
+          rule.style.getPropertyValue('touch-action') === 'none' &&
+          element.matches(rule.selectorText)
+      )
+
+    const wrapper = mount({ triggerSimple: true, collapseLeftTop: true })
+    const area = wrapper.find('.tiny-split-trigger-drag-area').element
+    expect(restrictsTouch(area)).toBe(true)
+
+    const button = wrapper.find('.tiny-split-trigger-left-button').element
+    expect(area.contains(button)).toBe(false)
+    for (let element: Element | null = button; element; element = element.parentElement) {
+      expect(restrictsTouch(element)).toBe(false)
+    }
+
+    const disabled = mount({ disabled: true })
+    const disabledArea = disabled.find('.tiny-split-trigger-drag-area').element
+    expect(restrictsTouch(disabledArea)).toBe(false)
   })
 
   test('keeps collapse buttons tappable without starting a drag', async () => {

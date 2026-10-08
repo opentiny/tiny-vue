@@ -72,6 +72,14 @@
       @apply absolute;
       @apply ~'-translate-x-2/4' ~'-translate-y-2/4';
       @apply z-10;
+
+      &:not(.@{split-prefix-cls}-trigger-con-disabled) > .@{split-prefix-cls}-trigger-drag-area {
+        touch-action: none;
+      }
+    }
+
+    &-drag-area {
+      @apply absolute inset-0;
     }
 
     &-bar-con {

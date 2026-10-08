@@ -35,20 +35,22 @@
         @mousedown="handleMousedown"
         @touchstart="handleMousedown"
       >
-        <slot name="trigger">
-          <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-vertical`]">
-            <template v-if="!state.triggerBarConWithLine">
-              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
-                <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
-              </div>
-            </template>
-            <template v-else>
-              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
-                <IconStretchUpright />
-              </div>
-            </template>
-          </div>
-        </slot>
+        <div :class="`${state.prefix}-trigger-drag-area`">
+          <slot name="trigger">
+            <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-vertical`]">
+              <template v-if="!state.triggerBarConWithLine">
+                <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
+                  <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
+                </div>
+              </template>
+              <template v-else>
+                <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'vertical']">
+                  <IconStretchUpright />
+                </div>
+              </template>
+            </div>
+          </slot>
+        </div>
         <div
           :class="[
             `${state.prefix}-trigger-button`,
@@ -113,20 +115,22 @@
         @mousedown="handleMousedown"
         @touchstart="handleMousedown"
       >
-        <slot name="trigger">
-          <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-horizontal`]">
-            <template v-if="!state.triggerBarConWithLine">
-              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
-                <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
-              </div>
-            </template>
-            <template v-else>
-              <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
-                <IconStretchCrosswise />
-              </div>
-            </template>
-          </div>
-        </slot>
+        <div :class="`${state.prefix}-trigger-drag-area`">
+          <slot name="trigger">
+            <div :class="[`${state.prefix}-trigger`, `${state.prefix}-trigger-horizontal`]">
+              <template v-if="!state.triggerBarConWithLine">
+                <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
+                  <i v-for="i in 3" v-once :class="`${state.prefix}-trigger-bar`" :key="`trigger-${i}`"></i>
+                </div>
+              </template>
+              <template v-else>
+                <div v-if="!triggerSimple" :class="[`${state.prefix}-trigger-bar-con`, 'horizontal']">
+                  <IconStretchCrosswise />
+                </div>
+              </template>
+            </div>
+          </slot>
+        </div>
         <div
           :class="[
             `${state.prefix}-trigger-button`,

@@ -3,6 +3,8 @@ import { defineConfig } from 'vitest/config'
 import { loadEnv } from 'vite'
 import virtualTemplatePlugin from '@opentiny-internal/unplugin-virtual-template/vite'
 import { createVuePlugin as vue2Plugin } from 'vite-plugin-vue2'
+
+// eslint-disable-next-line import/default -- The package's Vite import condition exports the plugin as default.
 import scriptSetupPlugin from 'unplugin-vue2-script-setup/vite'
 import { createSvgPlugin as vue2SvgPlugin } from 'vite-plugin-vue2-svg'
 import importPlugin from '@opentiny/vue-vite-import'
@@ -46,6 +48,7 @@ export default defineConfig((config) => {
       'process.env': env
     },
     test: {
+      css: { include: [/\/theme(?:-saas)?\/src\/split\/index\.less\?inline$/] },
       open: false,
       clearMocks: true,
       environment: 'jsdom',
