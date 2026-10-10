@@ -45,6 +45,7 @@ export default defineConfig((config) => {
       'process.env': env
     },
     test: {
+      css: { include: [/\/theme(?:-saas)?\/src\/split\/index\.less\?inline$/] },
       open: false,
       clearMocks: true,
       environment: 'jsdom',
