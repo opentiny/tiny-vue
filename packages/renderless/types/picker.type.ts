@@ -30,6 +30,7 @@ export interface IPickerApi {
   watchIsRange: (value: boolean) => void
   watchModelValue: (value: Date | Date[], oldValue: Date | Date[]) => boolean
   updateOptions: () => void
+  watchArrowControl: () => void
 }
 
 export interface IPickerState {

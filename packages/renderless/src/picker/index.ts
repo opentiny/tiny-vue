@@ -1165,10 +1165,23 @@ export const mountPicker =
     state.picker.state.defaultTimezone = props.defaultTimezone
     state.picker.state.unlinkPanels = props.unlinkPanels
     state.picker.state.emitDbTime = api.emitDbTime
-    state.picker.state.arrowControl = state.arrowControl || props.timeArrowControl || props.arrowControl || false
-
-    api.updateOptions()
+    api.watchArrowControl()
     state.picker.resetView && state.picker.resetView()
+  }
+
+export const watchArrowControl =
+  ({ api, props, state, nextTick, updatePopper }) =>
+  () => {
+    if (!state.picker) return
+
+    state.picker.state.arrowControl = state.arrowControl || props.timeArrowControl || props.arrowControl || false
+    api.updateOptions()
+
+    if (state.pickerVisible) {
+      nextTick(() => {
+        if (state.pickerVisible && state.picker) updatePopper(state.picker.$el)
+      })
+    }
   }
 
 export const updateOptions =
