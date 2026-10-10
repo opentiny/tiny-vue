@@ -279,7 +279,7 @@ export default defineComponent({
     'changeCompat',
     'parseInput'
   ],
-  emits: ['update:modelValue', 'change', 'blur', 'focus', 'paste-error', 'filter-change', 'clear'],
+  emits: ['update:modelValue', 'change', 'blur', 'focus', 'input', 'paste-error', 'filter-change', 'clear'],
   setup(props, context) {
     return setup({ props, context, renderless, api }) as unknown as INumericApi
   }
