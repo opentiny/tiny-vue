@@ -78,6 +78,15 @@
       position: absolute;
       transform: translate(-50%, -50%);
       z-index: 10;
+
+      &:not(.@{split-prefix-cls}-trigger-con-disabled) > .@{split-prefix-cls}-trigger-drag-area {
+        touch-action: none;
+      }
+    }
+
+    &-drag-area {
+      position: absolute;
+      inset: 0;
     }
 
     &-bar-con {
@@ -293,7 +302,6 @@
   &-trigger-button-show {
     visibility: visible;
   }
-
 
   &-trigger-con-vertical.@{split-prefix-cls}-trigger-con-simple {
     padding: 0 8px;
