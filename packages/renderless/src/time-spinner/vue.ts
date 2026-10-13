@@ -14,6 +14,7 @@ import {
   getArrowHourList,
   getArrowMinuteList,
   bindScrollEvent,
+  watchArrowControl,
   typeItemHeight,
   scrollBarHeight,
   amPm,
@@ -112,6 +113,8 @@ export const renderless = (
     adjustCurrentSpinner: adjustCurrentSpinner({ api, state }),
     selectDateScroll: selectDateScroll({ state, props })
   })
+
+  watch(() => props.arrowControl, watchArrowControl({ api, props, vm, nextTick }))
 
   watch(
     () => props.date,
