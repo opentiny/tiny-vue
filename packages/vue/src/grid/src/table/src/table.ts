@@ -37,7 +37,13 @@ import Tooltip from '@opentiny/vue-tooltip'
 import { extend } from '@opentiny/utils'
 import { isEmptyObject, isObject, isNull } from '@opentiny/utils'
 import { uniqueId, template, toNumber, isBoolean } from '@opentiny/vue-renderless/grid/static/'
-import { getRowkey, GlobalEvent, hasChildrenList, getListeners, resolveTableListeners } from '@opentiny/vue-renderless/grid/utils'
+import {
+  getRowkey,
+  GlobalEvent,
+  hasChildrenList,
+  getListeners,
+  resolveTableListeners
+} from '@opentiny/vue-renderless/grid/utils'
 import TINYGrid from '../../adapter'
 import GridBody from '../../body'
 import GridFilter from '../../filter'
@@ -752,16 +758,15 @@ export default defineComponent({
 
     const { tiledLength } = useData(props)
 
-    // 监听 horizonScroll.isLeft 和 isRight 的变化，直接操作 DOM 更新 class，避免触发重渲染
-    // 注意：tiny-grid-fixed__left 和 tiny-grid-fixed__right 通过 watch 直接操作 DOM 更新，避免触发重渲染
-    const updateFixedClasses = (isLeft, isRight) => {
+    // 监听 horizonScroll.isLeft 的变化，直接操作 DOM 更新 class，避免触发重渲染
+    // 注意：tiny-grid-fixed__left 通过 watch 直接操作 DOM 更新，避免触发重渲染
+    // tiny-grid-fixed__right 表示存在右侧冻结列，由 render 固定输出，不随滚动动态切换
+    const updateFixedClasses = (isLeft) => {
       if (!$table.$el) return
 
       const el = $table.$el as HTMLElement
       const hasLeftClass = el.classList.contains('tiny-grid-fixed__left')
-      const hasRightClass = el.classList.contains('tiny-grid-fixed__right')
       const shouldHaveLeft = !isLeft
-      const shouldHaveRight = !isRight
 
       // 只在状态真正变化时更新 DOM
       if (hasLeftClass !== shouldHaveLeft) {
@@ -771,22 +776,14 @@ export default defineComponent({
           el.classList.remove('tiny-grid-fixed__left')
         }
       }
-
-      if (hasRightClass !== shouldHaveRight) {
-        if (shouldHaveRight) {
-          el.classList.add('tiny-grid-fixed__right')
-        } else {
-          el.classList.remove('tiny-grid-fixed__right')
-        }
-      }
     }
 
     const resolveMap = {}
 
     hooks.watch(
-      () => [horizonScroll.value?.isLeft, horizonScroll.value?.isRight],
-      ([newIsLeft, newIsRight]) => {
-        hooks.nextTick(() => updateFixedClasses(newIsLeft, newIsRight))
+      () => horizonScroll.value?.isLeft,
+      (newIsLeft) => {
+        hooks.nextTick(() => updateFixedClasses(newIsLeft))
       }
     )
 
@@ -806,9 +803,6 @@ export default defineComponent({
             const el = $table.$el as HTMLElement
             if (!horizonScroll.value?.isLeft) {
               el.classList.add('tiny-grid-fixed__left')
-            }
-            if (!horizonScroll.value?.isRight) {
-              el.classList.add('tiny-grid-fixed__right')
             }
           }
         })
@@ -957,7 +951,8 @@ export default defineComponent({
           'column__highlight': highlightHoverColumn,
           'is__row-span': (rowSpan && rowSpan.length > 0) || typeof spanMethod === 'function',
           'row__drop-handle--index': dropConfig.rowHandle === 'index',
-          'fixed__sticky': horizonScroll.fixed
+          'fixed__sticky': horizonScroll.fixed,
+          'tiny-grid-fixed__right': true
         }
       },
       [
