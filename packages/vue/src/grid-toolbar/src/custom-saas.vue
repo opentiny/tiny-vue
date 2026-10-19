@@ -1110,14 +1110,6 @@ export default defineComponent({
       if (this.activeName === 'base') {
         this.columns = this.getColumnConfigs(this.data)
         this.groupedColumns = this.getGroupedColumns()
-        this.isGroup && (this.defaultcheckedkeys = this.getDefaultcheckedkeys())
-
-        if (this.$refs.tree) {
-          setTimeout(() => {
-            this.allCheckedKeys = [...this.$refs.tree.getCheckedKeys(), ...this.$refs.tree.getHalfCheckedKeys()]
-          }, 100)
-        }
-
         this.checkedColumns = this.columns.filter((col) => col.visible).map((col) => col.property)
         // 还原个性化设置的数据
         if (this.settings.columns && this.settings.columns.length) {
