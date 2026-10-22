@@ -59,6 +59,19 @@ fs.writeFileSync(path.resolve(root, 'dist/dark-theme-index.js'), jsStr) // 打�
 // 3、复制 package.json
 const content = fs.readFileSync(path.resolve(root, 'package.json'), 'utf8')
 const packageJson = JSON.parse(content)
-delete packageJson.exports
+
+// 没有exports时，容易遇到告警
+packageJson.exports = {
+  '.': {
+    'style': './index.css',
+    'default': './index.css'
+  },
+  './theme-tool': {
+    'types': './theme-tool.d.ts',
+    'default': './theme-tool.js'
+  },
+  './*': './*'
+}
 delete packageJson.private
+delete packageJson.stylelint
 fs.writeFileSync(path.resolve(root, 'dist/package.json'), JSON.stringify(packageJson, null, 2))
