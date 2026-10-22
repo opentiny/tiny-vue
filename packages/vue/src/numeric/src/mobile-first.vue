@@ -180,7 +180,7 @@ export default defineComponent({
     'changeCompat',
     'parseInput'
   ],
-  emits: ['update:modelValue', 'change', 'blur', 'focus'],
+  emits: ['update:modelValue', 'change', 'blur', 'focus', 'input'],
   setup(props, context): any {
     return setup({ props, context, renderless, api, classes })
   }
