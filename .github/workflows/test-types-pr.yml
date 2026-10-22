@@ -1,0 +1,32 @@
+name: PR Published Types
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/test-types-pr.yml'
+      - 'internals/cli/src/commands/build/**'
+      - 'internals/cli/test/**'
+      - 'internals/cli/package.json'
+      - 'packages/vue-common/src/adapter/**'
+      - 'packages/vue-common/src/index.ts'
+      - 'packages/vue/src/button/src/index.ts'
+      - 'packages/vue/src/space/src/index.ts'
+
+permissions:
+  contents: read
+
+jobs:
+  declarations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.14.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm -C internals/cli test
+      - run: pnpm build:ui button common space -v 3
+      - run: pnpm -C internals/cli test:types
