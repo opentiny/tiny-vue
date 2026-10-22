@@ -73,4 +73,5 @@ packageJson.exports = {
   './*': './*'
 }
 delete packageJson.private
+delete packageJson.stylelint
 fs.writeFileSync(path.resolve(root, 'dist/package.json'), JSON.stringify(packageJson, null, 2))
