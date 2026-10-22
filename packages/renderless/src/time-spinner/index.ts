@@ -105,6 +105,19 @@ export const bindScrollEvent =
     bindFuntion('seconds')
   }
 
+export const watchArrowControl =
+  ({ api, props, vm, nextTick }) =>
+  () => {
+    if (!props.arrowControl) {
+      nextTick(() => {
+        if (!props.arrowControl && vm.$refs.hours?.$refs?.wrap) {
+          api.bindScrollEvent()
+          api.adjustSpinners()
+        }
+      })
+    }
+  }
+
 export const handleScroll =
   ({ api, vm, state }) =>
   (type) => {
