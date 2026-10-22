@@ -17,7 +17,8 @@ permissions:
 
 jobs:
   declarations:
-    runs-on: ubuntu-latest
+    # Match the Windows environment used by the package publishing workflows.
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
