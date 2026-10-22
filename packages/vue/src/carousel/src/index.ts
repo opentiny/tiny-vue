@@ -75,7 +75,11 @@ export default defineComponent({
     },
     swipeable: Boolean,
     lite: Boolean,
-    beforeSwipe: Function
+    beforeSwipe: Function,
+    draggable: {
+      type: Boolean,
+      default: true
+    },
   },
   setup(props, context) {
     return $setup({
