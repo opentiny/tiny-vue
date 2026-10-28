@@ -4,6 +4,10 @@
   "description": "",
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opentiny/tiny-vue.git"
+  },
   "keywords": [],
   "main": "index.ts",
   "scripts": {

@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Parse Components
         id: parseComponents
@@ -62,8 +65,16 @@ jobs:
       - name: Run Build Components
         run: pnpm build:ui ${{ inputs.components }}
 
+      # Keep the build runtime; pnpm publish delegates the upload to npm on PATH.
+      - name: Set up Node.js for trusted publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Verify npm supports trusted publishing
+        run: node -e "const v=require('child_process').execSync('npm --version',{encoding:'utf8'}).trim(); const [a,b,c]=v.split('.').map(Number); if(a<11||(a===11&&(b<5||(b===5&&c<1)))) throw new Error('npm >=11.5.1 required, found '+v); console.log('npm '+v)"
+
       - name: Publish
         run: |
           pnpm pub:all
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

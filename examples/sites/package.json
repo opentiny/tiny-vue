@@ -3,6 +3,10 @@
   "type": "module",
   "version": "3.32.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opentiny/tiny-vue.git"
+  },
   "scripts": {
     "start": "vite",
     "start:saas": "vite --mode saas",

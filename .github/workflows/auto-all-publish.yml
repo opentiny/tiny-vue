@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
+      id-token: write
     outputs:
       branchVersion: ${{ steps.parseTag.outputs.branchVersion }}
     steps:
@@ -73,10 +76,18 @@ jobs:
       - name: Run Build Runtime
         run: pnpm build:runtime
 
+      # Keep the build runtime; pnpm publish delegates the upload to npm on PATH.
+      - name: Set up Node.js for trusted publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Verify npm supports trusted publishing
+        run: node -e "const v=require('child_process').execSync('npm --version',{encoding:'utf8'}).trim(); const [a,b,c]=v.split('.').map(Number); if(a<11||(a===11&&(b<5||(b===5&&c<1)))) throw new Error('npm >=11.5.1 required, found '+v); console.log('npm '+v)"
+
       - name: Publish Vue3 And Vue2 components
         run: pnpm pub:all && pnpm pub:runtime && pnpm pub:utils && pnpm pub:hooks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release
         if: contains(github.ref_name, 'alpha') == false
