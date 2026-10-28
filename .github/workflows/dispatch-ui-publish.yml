@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Parse Components
         id: parseComponents
@@ -62,8 +65,12 @@ jobs:
       - name: Run Build Components
         run: pnpm build:ui ${{ inputs.components }}
 
+      # Keep the build runtime; pnpm publish delegates the upload to npm on PATH.
+      - name: Set up Node.js for trusted publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=24.19.0 <25'
+
       - name: Publish
         run: |
           pnpm pub:all
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
