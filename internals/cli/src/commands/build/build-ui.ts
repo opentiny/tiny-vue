@@ -247,10 +247,6 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
               content.types = './src/index.d.ts'
             }
 
-            content.repository ||= {
-              type: 'git',
-              url: 'https://github.com/opentiny/tiny-vue.git'
-            }
             content.version = versionTarget
             content.dependencies = dependencies
 
