@@ -81,7 +81,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '>=24.19.0 <25'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Publish Vue3 And Vue2 components
         run: pnpm pub:all && pnpm pub:runtime && pnpm pub:utils && pnpm pub:hooks
