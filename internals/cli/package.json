@@ -9,6 +9,8 @@
     "cli": "./dist/cjs/index.js"
   },
   "scripts": {
+    "test": "vitest run",
+    "test:types": "node test/consumer/check.mjs",
     "build": "tsup",
     "// -------注意带 # 开头的脚本命令不要直接执行------- ": "",
     "build:entry": "esno src/index.ts build:entry",
@@ -59,6 +61,7 @@
     "tailwindcss": "^3.2.4",
     "tsup": "7.2.0",
     "typescript": "catalog:",
+    "vitest": "catalog:",
     "vite": "catalog:"
   }
 }

@@ -373,6 +373,9 @@ export const isVnode = hooks.isVNode
 
 export const KeepAlive = Vue.component('KeepAlive')
 
+// Vue 2.7 does not export Vue 3's SlotsType.
+export type SlotsType<T extends Record<string, unknown> = Record<string, unknown>> = T
+
 export type {
   PropType,
   ExtractPropTypes,
