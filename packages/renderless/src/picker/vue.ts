@@ -51,6 +51,7 @@ import {
   isValidValue,
   emitChange,
   mountPicker,
+  watchArrowControl,
   updateOptions,
   handleClickIcon,
   handlePick,
@@ -227,6 +228,7 @@ const initApi = ({ api, props, hooks, state, vnode, others, utils, parent, isPCM
     formatToString: formatToString({ api, state }),
     watchIsRange: watchIsRange({ api, state, TimePanel, TimeRangePanel }),
     mountPicker: mountPicker({ api, vm, props, state, updatePopper }),
+    watchArrowControl: watchArrowControl({ api, props, state, nextTick, updatePopper }),
     watchModelValue: watchModelValue({ api, props, state, dispatch }),
     computedFormat: computedFormat({ props, utils }),
     computedTriggerClass: computedTriggerClass({ props, state }),
@@ -297,6 +299,8 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
   )
 
   watch(() => props.type, api.mountPicker)
+
+  watch([() => props.arrowControl, () => props.timeArrowControl], api.watchArrowControl)
 
   watch(() => props.isRange, api.watchIsRange)
 
