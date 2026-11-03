@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: CheckOut Code
         uses: actions/checkout@master
@@ -74,7 +77,11 @@ jobs:
       - name: Run Release alpha
         run: pnpm release:alpha
 
+      # Keep the build runtime; pnpm publish delegates the upload to npm on PATH.
+      - name: Set up Node.js for trusted publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=24.19.0 <25'
+
       - name: Publish Vue3 And Vue2 components
         run: pnpm pub:all && pnpm pub:runtime && pnpm pub:utils && pnpm pub:hooks && pnpm pub:site
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
