@@ -78,7 +78,34 @@ describe('PC Mode', () => {
   })
 
   test.todo('tag-selectable 下拉框内选中项支持复制功能')
-  test.todo('disabled 下拉框禁用')
+  test('does not change value after an open select is disabled', async () => {
+    const onChange = vi.fn()
+    const wrapper = _mount(
+      `
+      <tiny-select v-model="value" :disabled="disabled" :popper-append-to-body="false" @change="onChange">
+        <tiny-option label="Apple" value="apple"></tiny-option>
+        <tiny-option label="Orange" value="orange"></tiny-option>
+      </tiny-select>
+      `,
+      () => ({ value: 'apple', disabled: false }),
+      { methods: { onChange } }
+    )
+
+    wrapper.get('input').element.focus()
+    await nextTick()
+    await wrapper.get('input').trigger('click')
+    const orange = wrapper.findAll('.tiny-option').find((option) => option.text() === 'Orange')!
+    expect(orange.isVisible()).toBe(true)
+
+    wrapper.vm.disabled = true
+    await nextTick()
+    await orange.trigger('click')
+
+    expect(wrapper.vm.value).toBe('apple')
+    expect(onChange).not.toHaveBeenCalled()
+    wrapper.unmount()
+  })
+
   test.todo('multiple 设置是否允许输入框输入或选择多个项')
   test.todo('placement tip 相对于创建 tip 的 dom 节点的位置')
   test.todo('clearable 设置是否显示清除文本的按钮')

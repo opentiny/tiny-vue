@@ -822,6 +822,8 @@ export const resetDatas =
 export const handleOptionSelect =
   ({ api, nextTick, props, vm, state }) =>
   (option, byClick) => {
+    if (state.selectDisabled) return
+
     state.memorize && state.memorize.updateByKey(option[state.memorize._dataKey] || option.value)
 
     if (props.multiple) {
