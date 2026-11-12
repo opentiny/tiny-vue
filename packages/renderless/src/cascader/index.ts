@@ -233,13 +233,10 @@ export const toggleDropDownVisible =
     updatePopper: (popperElm?: HTMLElement | undefined) => void
   }) =>
   (visible) => {
-    if (state.isDisabled) {
-      return
-    }
+    visible = !isNull(visible) ? visible : !state.dropDownVisible
+    if (visible && state.isDisabled) return
 
     const { input } = vm.$refs
-
-    visible = !isNull(visible) ? visible : !state.dropDownVisible
     if (visible !== state.dropDownVisible) {
       state.dropDownVisible = visible
       if (visible) {
@@ -613,6 +610,8 @@ export const handleDelete =
 export const handleSuggestionClick =
   ({ api, state }: { api: ICascaderApi; state: ICascaderState }) =>
   (index: number) => {
+    if (state.isDisabled) return
+
     const targetNode = state.suggestions[index]
 
     if (state.multiple) {
