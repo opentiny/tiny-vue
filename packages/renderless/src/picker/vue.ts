@@ -286,6 +286,16 @@ const initWatch = ({ api, state, props, watch, markRaw }) => {
   watch(() => state.pickerVisible, api.watchPickerVisible)
 
   watch(
+    () => state.pickerDisabled,
+    (disabled) => {
+      if (disabled && state.pickerVisible) {
+        state.userInput = null
+        api.hidePicker()
+      }
+    }
+  )
+
+  watch(
     () => props.defaultValue,
     (value) => state.picker && (state.picker.state.defaultValue = value)
   )
