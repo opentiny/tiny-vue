@@ -46,7 +46,7 @@ import {
 } from './index'
 import { removeResizeListener } from '@opentiny/utils'
 import { userPopper } from '@opentiny/vue-hooks'
-import { DATEPICKER } from '@opentiny/utils'
+import { DATEPICKER, isEqual } from '@opentiny/utils'
 import type {
   ICascaderProps,
   ICascaderApi,
@@ -216,11 +216,29 @@ const initWatch = ({
   nextTick: ICascadeRenderlessParamUtils['nextTick']
   updatePopper: (popperElm?: HTMLElement | undefined) => void
 }) => {
-  watch(() => state.disabled, api.computePresentContent)
+  watch(
+    () => state.disabled,
+    (disabled) => {
+      if (disabled) api.toggleDropDownVisible(false)
+      api.computePresentContent()
+    }
+  )
 
   watch(() => props.modelValue, api.watchValue) // 用户在修改值，不必触发change
 
-  watch(() => state.checkedValue, api.watchCheckedValue)
+  let lastCheckedValue = state.checkedValue
+  watch(
+    () => state.checkedValue,
+    (value) => {
+      if (state.isDisabled && !state.userChangeValue) {
+        if (!isEqual(value, lastCheckedValue)) state.checkedValue = lastCheckedValue
+        return
+      }
+
+      lastCheckedValue = value
+      api.watchCheckedValue(value)
+    }
+  )
 
   watch(
     () => props.options,
