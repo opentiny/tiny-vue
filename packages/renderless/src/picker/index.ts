@@ -1083,7 +1083,7 @@ export const showPicker =
 export const handlePick =
   ({ state, api }) =>
   (date = '', visible = false, chooseOne = false) => {
-    if (!state.picker) return
+    if (state.pickerDisabled || !state.picker) return
 
     if (chooseOne) {
       const minDate = (date && date[0]) || ''
