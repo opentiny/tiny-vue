@@ -14,6 +14,7 @@ import { capitalizeKebabCase, getPatchVersion, isValidVersion, kebabCase, logGre
 import generatePackageJsonPlugin from './rollup/generate-package-json'
 import inlineChunksPlugin from './rollup/inline-chunks'
 import replaceModuleNamePlugin from './rollup/replace-module-name'
+import { rewriteDeclarationImports } from './declaration-imports'
 
 export const pathFromPackages = (...args) => pathFromWorkspaceRoot('packages', ...args)
 export const require = createRequire(import.meta.url)
@@ -174,7 +175,7 @@ export const getBaseConfig = ({ vueVersion, dtsInclude, dts, buildTarget, isRunt
             return {
               // "vue/src/alert/index.d.ts" ==> "alert/index.d.ts"
               filePath: filePath.replace('/vue/src', '').replace('\\vue\\src', ''),
-              content: content
+              content: rewriteDeclarationImports(content)
                 // vue 2.7 还不能正常识别 vue-common
                 .replace(/import\('[./]+vue-common.+'\)/, 'import("vue")')
                 .replace(/\("vue[1-9\.]+/g, '("vue')

@@ -1,5 +1,5 @@
 import { $props, $prefix, $setup, defineComponent } from '@opentiny/vue-common'
-import type { PropType, SlotsType } from 'vue'
+import type { PropType, SlotsType } from '@opentiny/vue-common'
 import template from 'virtual-template?pc|mobile-first'
 
 export const spaceProps = {

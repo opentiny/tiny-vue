@@ -536,6 +536,7 @@ export type {
   DefineComponent,
   ComponentPublicInstance,
   SetupContext,
+  SlotsType,
   ComputedRef,
   App,
   VNode

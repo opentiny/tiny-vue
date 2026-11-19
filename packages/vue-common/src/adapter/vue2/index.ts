@@ -396,6 +396,9 @@ export type {
 
 export type DefineComponent = typeof defineComponent
 
+// Vue 2 ignores the Vue 3 slots option; retain its annotation without importing Vue 3 types.
+export type SlotsType<T extends Record<string, unknown> = Record<string, unknown>> = T
+
 export const isVnode = (vnode) =>
   ['isStatic', 'isRootInsert', 'isComment', 'isCloned', 'isOnce'].every((key) => typeof vnode[key] !== 'undefined')
 
