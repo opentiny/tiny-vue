@@ -498,9 +498,17 @@ export const h: CreateElement = (component, propsData, childData) => {
 }
 
 export const createComponentFn = (design) => {
-  return ({ component, propsData, el }) => {
+  return ({ component, propsData, el, parent }) => {
     const comp = Object.assign(component, { provide: { [design.configKey]: design.configInstance } })
     const vnode = hooks.createVNode(comp, propsData)
+
+    if (parent && parent._) {
+      const inst = parent._
+      const cloneAppContext = Object.create(inst.appContext)
+
+      cloneAppContext.provides = inst.provides
+      vnode.appContext = cloneAppContext
+    }
 
     hooks.render(vnode, el)
     return createVm({}, vnode.component)
