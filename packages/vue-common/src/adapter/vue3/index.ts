@@ -502,8 +502,9 @@ export const createComponentFn = (design) => {
     const comp = Object.assign(component, { provide: { [design.configKey]: design.configInstance } })
     const vnode = hooks.createVNode(comp, propsData)
 
-    if (parent && parent._) {
-      const inst = parent._
+    // parent 是父组件实例
+    if (parent) {
+      const inst = parent?._ || parent
       const cloneAppContext = Object.create(inst.appContext)
 
       cloneAppContext.provides = inst.provides
