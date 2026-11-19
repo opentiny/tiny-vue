@@ -58,6 +58,7 @@ export default (configs = {}) => {
     ...events
   }
 
+  // 由于导出函数是用户侧调用的，所以无法获取parent往此处传递
   const instance = createComponent({
     component: Drawer,
     propsData: {

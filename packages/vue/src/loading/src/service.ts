@@ -119,6 +119,7 @@ export default (configs: LoadingConfig = {}) => {
 
   loadingEl && parent.removeChild(loadingEl)
 
+  // 用户侧调用，无法获取parent
   let instance = createComponent({
     component: Loading,
     propsData: {
