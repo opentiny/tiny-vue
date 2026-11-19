@@ -322,6 +322,10 @@ export const handleInput =
       return
     }
 
+    if (event.target.value === String(state.userInput)) {
+      return
+    }
+
     // 此时为输入了1个有效的: 数字\英文\中文, 或者paste进来
     let value = event.target.value.replace(/^-+/, '-')
 
@@ -356,6 +360,8 @@ export const handleInput =
     event.target.value = isNull(value) ? '' : value
     state.lastInput = value
     state.userInput = value
+
+    emit('input', event)
   }
 
 export const handleInputChange =
