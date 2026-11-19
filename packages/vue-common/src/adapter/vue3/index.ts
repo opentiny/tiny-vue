@@ -505,10 +505,12 @@ export const createComponentFn = (design) => {
     // parent 是父组件实例
     if (parent) {
       const inst = parent?._ || parent
-      const cloneAppContext = Object.create(inst.appContext)
+      if (typeof inst.appContext !== 'undefined') {
+        const cloneAppContext = Object.create(inst.appContext)
 
-      cloneAppContext.provides = inst.provides
-      vnode.appContext = cloneAppContext
+        cloneAppContext.provides = inst.provides
+        vnode.appContext = cloneAppContext
+      }
     }
 
     hooks.render(vnode, el)
