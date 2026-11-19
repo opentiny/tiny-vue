@@ -105,6 +105,7 @@ const notify = (options: NotifyOptions): NotifyInstance => {
     Notify.close(id, userOnClose)
   }
 
+  // 用户侧调用，无法获取parent
   const instance = createComponent({
     el: document.createElement('div'),
     propsData: options,

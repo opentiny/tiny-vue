@@ -100,7 +100,7 @@ export function Modal(options: ModalOptions): ModalPromise {
           events.show && events.show.call(this, params)
         }
       })
-
+      // 用户侧调用，无法获取parent
       $modal = createComponent({
         el: document.createElement('div'),
         propsData: Object.assign(

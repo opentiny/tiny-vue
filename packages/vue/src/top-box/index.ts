@@ -78,6 +78,7 @@ const TopBox = function (options) {
 
   options.emitter = _emitter
 
+  // 用户侧调用，无法获取parent
   let instance = createComponent({
     el: document.createElement('div'),
     propsData: options,

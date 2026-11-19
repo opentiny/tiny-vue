@@ -130,6 +130,7 @@ const vLoading = {
     const customClassExr = el.getAttribute(constants.TEXT_CUSTOM_CLS)
 
     const mask = createComponent({
+      parent: binding.instance,
       component: Loading,
       propsData: {
         _constants: constants,
