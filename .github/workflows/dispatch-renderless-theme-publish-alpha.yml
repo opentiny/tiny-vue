@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Parse Components
         id: parseComponents
@@ -88,36 +91,32 @@ jobs:
       - name: Run Release alpha
         run: pnpm release:alpha -u
 
+      # Keep the build runtime; pnpm publish delegates the upload to npm on PATH.
+      - name: Set up Node.js for trusted publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: '>=24.19.0 <25'
+
       - name: Publish
         run: |
           pnpm pub:all
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
 
       - name: Publish Utils
         if: contains(inputs.components, 'utils') == true
         run: |
           pnpm pub:utils
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
 
       - name: Publish Runtime
         if: contains(inputs.components, 'runtime') == true
         run: |
           pnpm pub:runtime
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
 
       - name: Publish Hooks
         if: contains(inputs.components, 'hooks') == true
         run: |
           pnpm pub:hooks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
 
       - name: Publish Docs
         if: contains(inputs.components, 'docs') == true
         run: |
           pnpm pub:site
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_OPENTINY_VUE_TOKEN }}
